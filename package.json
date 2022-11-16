@@ -4,8 +4,8 @@
   "description": "roman cipher converter",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "env-cmd -f ./config/dev.env node src/index.js",
+    "test": "env-cmd -f ./config/dev.env jest tests/converter.test.js",
     "dev": "env-cmd -f ./config/dev.env nodemon src/index.js -e js,hbs,css etc extensions"
   },
   "repository": {
