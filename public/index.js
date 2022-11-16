@@ -6,11 +6,10 @@ convertButton.addEventListener('click', async () => {
         alert('Please enter integer from 0 to 100');
     }
     else {
-        const data = await fetch(`/converter?number=${number}`, {
-            method: 'GET',
-            headers: {"Content-Type": "application/json"},
-        });
-        const jsonData = await data.json();
-        document.getElementById('result').innerHTML = jsonData.romanNumber;
+        const eventSource = new EventSource(`/converter?number=${number}`);
+        eventSource.onmessage = function (event) {
+            document.getElementById('result').innerHTML = event.data;
+            eventSource.close();
+        }
     }
 });
