@@ -7,9 +7,7 @@ test('should return the roman cipher conversion', async () => {
         .query({ number: '9' })
         .expect(200);
 
-    expect(response.body).toEqual({
-        romanNumber: 'IX',
-    });
+    expect(response.text).toEqual('data: IX\n\n');
 });
 
 test('should return an error if the number is below 0', async () => {

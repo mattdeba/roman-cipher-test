@@ -24,7 +24,9 @@ router.get('/converter', async (req, res) => {
     try {
         const {number} = req.query;
         const romanNumber = convertToRoman(parseInt(number));
-        res.send({romanNumber});
+        res.setHeader('Content-Type', 'text/event-stream')
+        res.write(`data: ${romanNumber}\n\n`);
+        res.status(200).end();
     } catch (e) {
         res.status(500).send(e);
     }
